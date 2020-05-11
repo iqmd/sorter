@@ -16,48 +16,19 @@ for folder in dirs.keys():
     except OSError:
         print('Folder Already Exists!')
     
-dest = [ src+'\\'+i for i in list(dirs.keys())]
-    
+dest = [ os.path.join(src,i) for i in list(dirs.keys())]
+                    
+def FileSorter(file_type,num):
+    global src
+    global dest
+    for j in dirs[file_type]:
+         if i.endswith(j):
+            try:
+                print(i)
+                shutil.move(src+'\\'+i,dest[num]+'\\'+i)
+            except:
+                print('An error occured while moving!!')
+        
 for i in os.listdir(src):
-    for j in dirs['Documents']:
-        if i.endswith(j):
-            try:
-                print(i)
-                shutil.move(src+'\\'+i,dest[0]+'\\'+i)
-            except:
-                print('An error occured while moving !!')
-    for j in dirs['Video']:
-        if i.endswith(j):
-            try:
-                print(i)
-                shutil.move(src+'\\'+i,dest[1]+'\\'+i)
-            except:
-                print('An error occured while moving!!')
-    for j in dirs['Compressed']:
-        if i.endswith(j):
-            try:
-                print(i)
-                shutil.move(src+'\\'+i,dest[2]+'\\'+i)
-            except:
-                print('An error occured while moving!!')
-    for j in dirs['Programs']:
-        if i.endswith(j):
-            try:
-                print(i)
-                shutil.move(src+'\\'+i,dest[3]+'\\'+i)
-            except:
-                print('An error occured while moving!!')
-    for j in dirs['Music']:
-        if i.endswith(j):
-            try:
-                print(i)
-                shutil.move(src+'\\'+i,dest[4]+'\\'+i)
-            except:
-                print('An error occured while moving!!')
-    for j in dirs['Pictures']:
-        if i.endswith(j):
-            try:
-                print(i)
-                shutil.move(src+'\\'+i,dest[5]+'\\'+i)
-            except:
-                print('An error occured while moving!!')
+    for j, k  in zip(dirs.keys() , range(len(dest)+1)):
+        FileSorter(j,k)
