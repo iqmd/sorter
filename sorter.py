@@ -8,7 +8,7 @@ else:
     src = os.path.abspath(sys.argv[1])
 
 dirs = {'Documents': ['.pdf','.docx','.doc','.txt', '.html','.htm','.ppt','.pptx'], 'Video': ['.mp4','.mkv'] ,'Compressed': '.zip', 
-        'Programs':['.exe','.py','.c'] , 'Music': '.mp3', 'Pictures': [ '.jpg','.jpeg','.png'] }
+        'Programs':['.exe','.c'] , 'Music': '.mp3', 'Pictures': [ '.jpg','.jpeg','.png'] }
         
 for folder in dirs.keys():
     try:
@@ -25,10 +25,11 @@ def FileSorter(file_type,num):
          if i.endswith(j):
             try:
                 print(i)
-                shutil.move(src+'\\'+i,dest[num]+'\\'+i)
+                shutil.move(src+os.sep+i,dest[num]+os.sep+i)
             except:
                 print('An error occured while moving!!')
         
 for i in os.listdir(src):
     for j, k  in zip(dirs.keys() , range(len(dest)+1)):
         FileSorter(j,k)
+  
